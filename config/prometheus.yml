@@ -18,6 +18,9 @@ scrape_configs:
     file_sd_configs:
       - files:
         - /etc/prometheus/dynamic_targets.json
+  - job_name: "consul"
+    static_configs:
+      - targets: ["consul-exporter:9107"]
 
 alerting:
   alertmanagers:
