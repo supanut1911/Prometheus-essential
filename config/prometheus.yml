@@ -3,7 +3,8 @@ global:
   evaluation_interval: 1m
 
 rule_files:
-  - /etc/prometheus/rules/*.rules
+  # - /etc/prometheus/rules/*.rules
+  - /etc/prometheus/rules/alert_rules.yml
   - /etc/prometheus/rules/recording_rules.yml
 
 scrape_configs:
