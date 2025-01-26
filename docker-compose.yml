@@ -8,3 +8,15 @@ services:
       - ./config/dynamic_targets.json:/etc/prometheus/dynamic_targets.json
       - ./config/rules/alert_rules.yml:/etc/prometheus/rules/alert_rules.yml
       - ./config/rules/recording_rules.yml:/etc/prometheus/rules/recording_rules.yml
+
+  promLens:
+    image: prom/promlens
+    ports:
+      - 8080:8080
+
+  alertmanager:
+    image: prom/alertmanager
+    ports:
+      - 9093:9093
+    volumes:
+      - ./config/alert-manager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
