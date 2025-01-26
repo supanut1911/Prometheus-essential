@@ -7,3 +7,4 @@ services:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./config/dynamic_targets.json:/etc/prometheus/dynamic_targets.json
       - ./config/rules:/etc/prometheus/rules
+      - ./config/rules/recording_rules.yml:/etc/prometheus/rules/recording_rules.yml
