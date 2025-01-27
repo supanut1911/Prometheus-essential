@@ -19,3 +19,26 @@ groups:
         annotations:
           summary: "Instance {{ $labels.instance }} is down"
           description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes"
+  - name: exmaple-latency
+    rules:
+    - alert: HighLatency
+      expr |
+        histogram_quantile(0.9, sum(rate(http_request_duration_seconds_bucket[5m]))) by (le) > 0.5
+      for: 5m
+      labels:
+        severity: warning
+      annotation:
+        summary: "High 90 percentile Latency"
+        description: "The 90 percentile latency is above 0.5"
+        
+  - name: exmaple-throughput
+    rules:
+    - alert: Lowthroughput
+      expr |
+        sum(rate(http_request_total[10m])) < 10000
+      for: 5m
+      labels:
+        severity: warning
+      annotation:
+        summary: "Low thoughput"
+        description: "The thoughput is below the threshold for last 5 min"
